@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<!-- saved from url=(0033)https://www.calormen.com/jslogo/# -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title data-l10n-id="title">Logo Interpreter</title>
+
+
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=0, width=device-width">
+
+<link rel="alternate" type="application/atom+xml" href="https://github.com/inexorabletash/jslogo/commits/master.atom">
+<link rel="shortcut icon" href="https://www.calormen.com/jslogo/favicon.ico">
+
+<script async="" src="./Logo Interpreter-house_files/analytics.js.download"></script><script src="./Logo Interpreter-house_files/polyfill.min.js.download"></script>
+
+<!-- CodeMirror, add-ons, and Logo-specific highlighting -->
+<script src="./Logo Interpreter-house_files/codemirror.min.js.download"></script>
+<script src="./Logo Interpreter-house_files/runmode.min.js.download"></script>
+<script src="./Logo Interpreter-house_files/closebrackets.min.js.download"></script>
+<script src="./Logo Interpreter-house_files/matchbrackets.min.js.download"></script>
+<script src="./Logo Interpreter-house_files/placeholder.min.js.download"></script>
+<link rel="stylesheet" href="./Logo Interpreter-house_files/codemirror.css">
+<script src="./Logo Interpreter-house_files/logo.js.download"></script>
+
+<link rel="stylesheet" href="./Logo Interpreter-house_files/logo.css">
+
+<link rel="stylesheet" href="./Logo Interpreter-house_files/index.css">
+
+</head><body class="multi" lang="en">
+
+<div id="topbar" class="panel">
+  <h1 data-l10n-id="tl-title">Logo Interpreter</h1>
+  <p id="topbar-links">
+    <a data-l10n-id="tl-tests" target="_blank" href="https://www.calormen.com/jslogo/tests.html?noglobals">Tests</a>
+    | <a data-l10n-id="tl-source" target="_blank" href="https://github.com/inexorabletash/jslogo">Source</a>
+    | <a title="Collaborate with TogetherJS" href="https://www.calormen.com/jslogo/#" data-l10n-id="start-togetherjs" onclick="TogetherJS(); return false">Collaborate</a>
+    | <select id="select-lang"><option value="en">English</option><option value="eo">Esperanto</option><option value="es">Español</option><option value="fr">Français</option><option value="he">עברית</option><option value="it">Italiano</option><option value="ja">日本語</option><option value="pl">Polski</option><option value="ru">Русский</option><option value="zh">中文</option></select>
+  </p>
+  <p id="topbar-altlinks">
+    <a target="_blank" href="https://www.calormen.com/jslogo/language.html" data-l10n-id="tl-reference">Reference</a>
+  </p>
+</div>
+
+<div id="display-panel" class="panel">
+  <div id="display">
+    <div class="inner">
+      <canvas id="sandbox" width="1117" height="624">
+        <span data-l10n-id="no-canvas">Your browser does not support the canvas element - sorry!</span>
+      </canvas>
+      <canvas id="turtle" width="1117" height="624"></canvas>
+      <div id="overlay" style="font-size: 13px; font-family: monospace; color: black;"></div>
+      <div id="error"></div>
+    </div>
+  </div>
+</div>
+
+<div id="input-panel" class="panel">
+  <!-- TODO: Make this a button or anchor -->
+  <div id="run"><div data-l10n-id="ip-button-run" class="label">Run</div></div>
+  <div id="stop"><div data-l10n-id="ip-button-stop" class="label">Stop</div></div>
+  <div id="clear"><div data-l10n-id="ip-button-clear" class="label">Clear</div></div>
+  <div id="input">
+    <div class="inner">
+      <div id="toggle">
+        <span id="expand-label">↗</span>
+        <span id="collapse-label">↙</span>
+      </div>
+      <textarea rows="1" cols="80" placeholder="Type your code here..." data-l10n-id="logo-ta-single-line" id="logo-ta-single-line" style="display: none;"></textarea><div class="CodeMirror cm-s-default" id="logo-cm-single-line" style="width: 100%; height: 23.2px;"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 4px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" tabindex="-1" cm-not-content="true" style="display: block; bottom: 0px;"><div style="min-width: 1px; height: 25px;"></div></div><div class="CodeMirror-hscrollbar" tabindex="-1" cm-not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: -17px; border-right-width: 33px; min-height: 26px; min-width: 763.7px; padding-right: 17px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre class="CodeMirror-line-like"><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors" style=""><div class="CodeMirror-cursor" style="left: 4px; top: 0px; height: 18.4px;">&nbsp;</div></div><div class="CodeMirror-code" role="presentation"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-logo-word">cs</span>    <span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span>  <span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>  <span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span>  <span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>  <span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span>  <span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>  <span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 33px; width: 1px; border-bottom: 0px solid transparent; top: 26px;"></div><div class="CodeMirror-gutters" style="display: none; height: 59px;"></div></div></div>
+      <textarea rows="20" cols="80" placeholder="Type your code here..." data-l10n-id="logo-ta-multi-line" id="logo-ta-multi-line" style="display: none;"></textarea><div class="CodeMirror cm-s-default" id="logo-cm-multi-line" style="width: 100%; height: 100%;"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 116px; left: 105.488px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" tabindex="-1" cm-not-content="true" style="bottom: 0px; display: block;"><div style="min-width: 1px; height: 616px;"></div></div><div class="CodeMirror-hscrollbar" tabindex="-1" cm-not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1" draggable="false"><div class="CodeMirror-sizer" style="margin-left: 30px; margin-bottom: -17px; border-right-width: 33px; min-height: 616px; min-width: 85.6375px; padding-right: 17px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre class="CodeMirror-line-like">x</pre><div class="CodeMirror-linenumber CodeMirror-gutter-elt"><div>10</div></div><div class="CodeMirror-linenumber CodeMirror-gutter-elt"><div>1</div></div><div class="CodeMirror-linenumber CodeMirror-gutter-elt"><div>10</div></div></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors" style=""><div class="CodeMirror-cursor" style="left: 75.4875px; top: 577.6px; height: 15.2px;">&nbsp;</div></div><div class="CodeMirror-code" role="presentation" style=""><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-logo-word">cs</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">2</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-logo-word">pendown</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">3</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">4</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">5</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">6</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">7</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">8</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">9</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">10</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">11</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">12</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">13</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">14</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">15</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">16</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">17</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-logo-word">penup</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">18</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">19</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-logo-word">forward</span> <span class="cm-logo-number">100</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">20</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">21</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-logo-word">pendown</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">22</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">23</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">24</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-logo-word">forward</span> <span class="cm-logo-number">25</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">25</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">26</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">27</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">28</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-logo-word">penup</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">29</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">30</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">31</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">32</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-logo-word">forward</span> <span class="cm-logo-number">120</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">33</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-logo-word">left</span> <span class="cm-logo-number">45</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">34</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-logo-word">pendown</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">35</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">36</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">37</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-logo-word">forward</span> <span class="cm-logo-number">60</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">38</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">39</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-logo-word">forward</span> <span class="cm-logo-number">60</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" aria-hidden="true" style="left: -30px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">40</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 33px; width: 1px; border-bottom: 0px solid transparent; top: 616px;"></div><div class="CodeMirror-gutters" style="height: 649px; left: 0px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 29px;"></div></div></div></div>
+    </div>
+  </div>
+</div>
+
+<div id="sidebar-header" class="panel">
+  <ul>
+    <li><a data-l10n-id="sb-link-reference" id="sb-link-reference" href="https://www.calormen.com/jslogo/#">Reference</a>
+      <span class="linkdesc">– <span data-l10n-id="sb-link-text-reference">the Logo language</span></span>
+    </li><li><a data-l10n-id="sb-link-library" id="sb-link-library" href="https://www.calormen.com/jslogo/#">Library</a>
+      <span class="linkdesc">– <span data-l10n-id="sb-link-text-library">your procedures</span></span>
+    </li><li><a data-l10n-id="sb-link-history" id="sb-link-history" href="https://www.calormen.com/jslogo/#">History</a>
+      <span class="linkdesc">– <span data-l10n-id="sb-link-text-history">everything you've done here</span></span>
+    </li><li><a data-l10n-id="sb-link-examples" id="sb-link-examples" href="https://www.calormen.com/jslogo/#">Examples</a>
+      <span class="linkdesc">– <span data-l10n-id="sb-link-text-examples">fun things to try out</span></span>
+    </li><li><a data-l10n-id="sb-link-extras" id="sb-link-extras" href="https://www.calormen.com/jslogo/#">Extras</a>
+      <span class="linkdesc">– <span data-l10n-id="sb-link-text-extras">helpful utilities</span></span>
+    </li><li><a data-l10n-id="sb-link-links" id="sb-link-links" href="https://www.calormen.com/jslogo/#">Links</a>
+      <span class="linkdesc">– <span data-l10n-id="sb-link-text-links">other Logo resources</span></span>
+  </li></ul>
+</div>
+
+<div id="sidebar" class="panel history">
+  <iframe frameborder="0" allowtransparency="true" src="./Logo Interpreter-house_files/language.html" class="choice" id="reference"></iframe>
+  <div class="choice snippets" id="examples"><div class="snippet" title="Click to edit"><pre><span class="cm-logo-defn-start">to</span> <span class="cm-logo-defn-name">star</span>
+  <span class="cm-logo-word">repeat</span> <span class="cm-logo-number">5</span> <span class="cm-logo-operator">[</span> <span class="cm-logo-word">fd</span> <span class="cm-logo-number">100</span> <span class="cm-logo-word">rt</span> <span class="cm-logo-number">144</span> <span class="cm-logo-operator">]</span>
+<span class="cm-logo-defn-end">end</span>
+<span class="cm-logo-word">clearscreen</span>
+<span class="cm-logo-word">star</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-defn-start">to</span> <span class="cm-logo-defn-name">square</span> <span class="cm-logo-defn-arg">:length</span>
+  <span class="cm-logo-word">repeat</span> <span class="cm-logo-number">4</span> <span class="cm-logo-operator">[</span> <span class="cm-logo-word">fd</span> <span class="cm-logo-variable">:length</span> <span class="cm-logo-word">rt</span> <span class="cm-logo-number">90</span> <span class="cm-logo-operator">]</span>
+<span class="cm-logo-defn-end">end</span>
+<span class="cm-logo-defn-start">to</span> <span class="cm-logo-defn-name">randomcolor</span>
+  <span class="cm-logo-word">setcolor</span> <span class="cm-logo-word">pick</span> <span class="cm-logo-operator">[</span> <span class="cm-logo-word">red</span> <span class="cm-logo-word">orange</span> <span class="cm-logo-word">yellow</span> <span class="cm-logo-word">green</span> <span class="cm-logo-word">blue</span> <span class="cm-logo-word">violet</span> <span class="cm-logo-operator">]</span>
+<span class="cm-logo-defn-end">end</span>
+<span class="cm-logo-word">clearscreen</span>
+<span class="cm-logo-word">repeat</span> <span class="cm-logo-number">36</span> <span class="cm-logo-operator">[</span> <span class="cm-logo-word">randomcolor</span> <span class="cm-logo-word">square</span> <span class="cm-logo-word">random</span> <span class="cm-logo-number">200</span> <span class="cm-logo-word">rt</span> <span class="cm-logo-number">10</span> <span class="cm-logo-operator">]</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">clearscreen</span> <span class="cm-logo-word">window</span> <span class="cm-logo-word">hideturtle</span>
+<span class="cm-logo-word">repeat</span> <span class="cm-logo-number">144</span> <span class="cm-logo-operator">[</span>
+  <span class="cm-logo-word">setlabelheight</span> <span class="cm-logo-word">repcount</span>
+  <span class="cm-logo-word">penup</span>
+  <span class="cm-logo-word">fd</span> <span class="cm-logo-word">repcount</span> <span class="cm-logo-operator">*</span> <span class="cm-logo-word">repcount</span> <span class="cm-logo-operator">/</span> <span class="cm-logo-number">30</span>
+  <span class="cm-logo-word">label</span> <span class="cm-logo-string">"Logo</span>
+  <span class="cm-logo-word">bk</span> <span class="cm-logo-word">repcount</span> <span class="cm-logo-operator">*</span> <span class="cm-logo-word">repcount</span> <span class="cm-logo-operator">/</span> <span class="cm-logo-number">30</span>
+  <span class="cm-logo-word">pendown</span>
+  <span class="cm-logo-word">rt</span> <span class="cm-logo-number">10</span>
+  <span class="cm-logo-word">wait</span> <span class="cm-logo-number">5</span>
+<span class="cm-logo-operator">]</span>
+<span class="cm-logo-word">showturtle</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-defn-start">to</span> <span class="cm-logo-defn-name">tree</span> <span class="cm-logo-defn-arg">:size</span>
+   <span class="cm-logo-word">if</span> <span class="cm-logo-variable">:size</span> <span class="cm-logo-operator">&lt;</span> <span class="cm-logo-number">5</span> <span class="cm-logo-operator">[</span><span class="cm-logo-word">forward</span> <span class="cm-logo-variable">:size</span> <span class="cm-logo-word">back</span> <span class="cm-logo-variable">:size</span> <span class="cm-logo-word">stop</span><span class="cm-logo-operator">]</span>
+   <span class="cm-logo-word">forward</span> <span class="cm-logo-variable">:size</span><span class="cm-logo-operator">/</span><span class="cm-logo-number">3</span>
+   <span class="cm-logo-word">left</span> <span class="cm-logo-number">30</span> <span class="cm-logo-word">tree</span> <span class="cm-logo-variable">:size</span><span class="cm-logo-operator">*</span><span class="cm-logo-number">2</span><span class="cm-logo-operator">/</span><span class="cm-logo-number">3</span> <span class="cm-logo-word">right</span> <span class="cm-logo-number">30</span>
+   <span class="cm-logo-word">forward</span> <span class="cm-logo-variable">:size</span><span class="cm-logo-operator">/</span><span class="cm-logo-number">6</span>
+   <span class="cm-logo-word">right</span> <span class="cm-logo-number">25</span> <span class="cm-logo-word">tree</span> <span class="cm-logo-variable">:size</span><span class="cm-logo-operator">/</span><span class="cm-logo-number">2</span> <span class="cm-logo-word">left</span> <span class="cm-logo-number">25</span>
+   <span class="cm-logo-word">forward</span> <span class="cm-logo-variable">:size</span><span class="cm-logo-operator">/</span><span class="cm-logo-number">3</span>
+   <span class="cm-logo-word">right</span> <span class="cm-logo-number">25</span> <span class="cm-logo-word">tree</span> <span class="cm-logo-variable">:size</span><span class="cm-logo-operator">/</span><span class="cm-logo-number">2</span> <span class="cm-logo-word">left</span> <span class="cm-logo-number">25</span>
+   <span class="cm-logo-word">forward</span> <span class="cm-logo-variable">:size</span><span class="cm-logo-operator">/</span><span class="cm-logo-number">6</span>
+   <span class="cm-logo-word">back</span> <span class="cm-logo-variable">:size</span>
+<span class="cm-logo-defn-end">end</span>
+<span class="cm-logo-word">clearscreen</span>
+<span class="cm-logo-word">tree</span> <span class="cm-logo-number">150</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-defn-start">to</span> <span class="cm-logo-defn-name">fern</span> <span class="cm-logo-defn-arg">:size</span> <span class="cm-logo-defn-arg">:sign</span>
+  <span class="cm-logo-word">if</span> <span class="cm-logo-variable">:size</span> <span class="cm-logo-operator">&lt;</span> <span class="cm-logo-number">1</span> <span class="cm-logo-operator">[</span> <span class="cm-logo-word">stop</span> <span class="cm-logo-operator">]</span>
+  <span class="cm-logo-word">fd</span> <span class="cm-logo-variable">:size</span>
+  <span class="cm-logo-word">rt</span> <span class="cm-logo-number">70</span> <span class="cm-logo-operator">*</span> <span class="cm-logo-variable">:sign</span> <span class="cm-logo-word">fern</span> <span class="cm-logo-variable">:size</span> <span class="cm-logo-operator">*</span> <span class="cm-logo-number">0.5</span> <span class="cm-logo-variable">:sign</span> <span class="cm-logo-operator">*</span> <span class="cm-logo-operator">-</span><span class="cm-logo-number">1</span> <span class="cm-logo-word">lt</span> <span class="cm-logo-number">70</span> <span class="cm-logo-operator">*</span> <span class="cm-logo-variable">:sign</span>
+  <span class="cm-logo-word">fd</span> <span class="cm-logo-variable">:size</span>
+  <span class="cm-logo-word">lt</span> <span class="cm-logo-number">70</span> <span class="cm-logo-operator">*</span> <span class="cm-logo-variable">:sign</span> <span class="cm-logo-word">fern</span> <span class="cm-logo-variable">:size</span> <span class="cm-logo-operator">*</span> <span class="cm-logo-number">0.5</span> <span class="cm-logo-variable">:sign</span> <span class="cm-logo-word">rt</span> <span class="cm-logo-number">70</span> <span class="cm-logo-operator">*</span> <span class="cm-logo-variable">:sign</span>
+  <span class="cm-logo-word">rt</span> <span class="cm-logo-number">7</span> <span class="cm-logo-operator">*</span> <span class="cm-logo-variable">:sign</span> <span class="cm-logo-word">fern</span> <span class="cm-logo-variable">:size</span> <span class="cm-logo-operator">-</span> <span class="cm-logo-number">1</span> <span class="cm-logo-variable">:sign</span> <span class="cm-logo-word">lt</span> <span class="cm-logo-number">7</span> <span class="cm-logo-operator">*</span> <span class="cm-logo-variable">:sign</span>
+  <span class="cm-logo-word">bk</span> <span class="cm-logo-variable">:size</span> <span class="cm-logo-operator">*</span> <span class="cm-logo-number">2</span>
+<span class="cm-logo-defn-end">end</span>
+<span class="cm-logo-word">window</span> <span class="cm-logo-word">clearscreen</span> <span class="cm-logo-word">pu</span> <span class="cm-logo-word">bk</span> <span class="cm-logo-number">150</span> <span class="cm-logo-word">pd</span>
+<span class="cm-logo-word">fern</span> <span class="cm-logo-number">25</span> <span class="cm-logo-number">1</span>
+</pre></div></div>
+  <div class="choice" id="history">
+    <div style="text-align: center; padding: 5px">
+      <a id="clearhistory" href="https://www.calormen.com/jslogo/#" data-l10n-id="extras-clear-history">Clear History</a>
+    </div>
+    <div class="snippets"><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">right</span> <span class="cm-logo-number">150</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">clearscreen</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">forward</span> <span class="cm-logo-number">300</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">rigth</span> <span class="cm-logo-number">90</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-defn-start">TO</span> <span class="cm-logo-defn-name">randomcolor</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-defn-start">to</span> <span class="cm-logo-defn-name">randomcolor</span> <span class="cm-logo-word">setcolor</span> <span class="cm-logo-word">pick</span> <span class="cm-logo-operator">[</span><span class="cm-logo-word">red</span> <span class="cm-logo-word">orange</span> <span class="cm-logo-word">green</span> <span class="cm-logo-word">blue</span><span class="cm-logo-operator">]</span> <span class="cm-logo-defn-end">end</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">forward</span> <span class="cm-logo-number">380</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">clearscreen</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">forward</span> <span class="cm-logo-number">250</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">forward</span> <span class="cm-logo-number">250</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">forward</span> <span class="cm-logo-number">300</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">forward</span> <span class="cm-logo-number">300</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">forward</span> <span class="cm-logo-number">20</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">forward</span> <span class="cm-logo-number">30</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">forward</span> <span class="cm-logo-number">5</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">forward</span> <span class="cm-logo-number">20</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">forward</span> <span class="cm-logo-number">5</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre>
+
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span> <span class="cm-logo-operator">*</span><span class="cm-logo-number">2</span>
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span> <span class="cm-logo-operator">*</span><span class="cm-logo-number">2</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span> <span class="cm-logo-operator">*</span><span class="cm-logo-number">2</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span> <span class="cm-logo-operator">*</span><span class="cm-logo-number">2</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span> <span class="cm-logo-operator">*</span><span class="cm-logo-number">2</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span> <span class="cm-logo-operator">*</span><span class="cm-logo-number">2</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span> <span class="cm-logo-operator">*</span><span class="cm-logo-number">2</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span> <span class="cm-logo-operator">*</span><span class="cm-logo-number">2</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span> <span class="cm-logo-operator">*</span><span class="cm-logo-number">2</span>
+<span class="cm-logo-word">penup</span> 
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span> <span class="cm-logo-operator">*</span><span class="cm-logo-number">2</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span> <span class="cm-logo-operator">*</span><span class="cm-logo-number">2</span>
+<span class="cm-logo-word">penup</span> 
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">180</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span> <span class="cm-logo-operator">*</span><span class="cm-logo-number">2</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span> <span class="cm-logo-operator">*</span><span class="cm-logo-number">2</span>
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>    <span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span>  <span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>  <span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span> <span class="cm-logo-operator">*</span><span class="cm-logo-number">2</span>  <span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>  <span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span>  <span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>  <span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span> <span class="cm-logo-operator">*</span><span class="cm-logo-number">2</span>  </pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+  <span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span></pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">300</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">300</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">100</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">100</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">100</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">100</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">100</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">25</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">100</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">25</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">100</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">25</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">100</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">25</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">100</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">25</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">100</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">25</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">25</span>
+
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">100</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">25</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">25</span>
+
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">100</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">25</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span><span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">25</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">100</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">25</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">100</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">25</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">100</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">25</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">100</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">25</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">100</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">25</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">150</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">100</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">25</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">100</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">100</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">25</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">110</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">100</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">25</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">120</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">100</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">25</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">140</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">100</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">25</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">135</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">100</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">25</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">135</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">45</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">100</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">25</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">135</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">100</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">25</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">135</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">100</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">25</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">130</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">100</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">25</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">120</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">100</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">25</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">120</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">100</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">25</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">120</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">100</span>
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">100</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">25</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">120</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">90</span>
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">100</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">25</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">120</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">60</span>
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">100</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">25</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">120</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">60</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+</pre></div><div class="snippet" title="Click to edit"><pre><span class="cm-logo-word">cs</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">400</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">100</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">25</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">penup</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">200</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">90</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">120</span>
+<span class="cm-logo-word">left</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">pendown</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">50</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">60</span>
+<span class="cm-logo-word">right</span> <span class="cm-logo-number">45</span>
+<span class="cm-logo-word">forward</span> <span class="cm-logo-number">60</span>
+</pre></div></div>
+    <div class="placeholder" data-l10n-id="history-placeholder" y="">
+      Commands you enter will appear here so you can find, modify, and re-run them.
+    </div>
+  </div>
+  <div class="choice" id="library">
+    <div style="text-align: center; padding: 5px">
+      <a id="clearlibrary" href="https://www.calormen.com/jslogo/#" data-l10n-id="extras-clear-library">Clear Library</a>
+    </div>
+    <div class="snippets"><div class="snippet" title="Click to edit"><pre><span class="cm-logo-defn-start">to</span> <span class="cm-logo-defn-name">randomcolor</span>
+  <span class="cm-logo-word">setcolor</span> <span class="cm-logo-word">pick</span> <span class="cm-logo-operator">[</span> <span class="cm-logo-word">red</span> <span class="cm-logo-word">orange</span> <span class="cm-logo-word">green</span> <span class="cm-logo-word">blue</span> <span class="cm-logo-operator">]</span>
+<span class="cm-logo-defn-end">end</span></pre></div></div>
+  </div>
+  <div class="choice" id="links" dir="ltr">
+
+    <ul>
+      <li><a target="_blank" href="https://en.wikipedia.org/wiki/Logo_(programming_language)">Logo</a> according to Wikipedia
+      </li><li><a target="_blank" href="https://utdallas.edu/~veerasam/logo/">UT Dallas LOGO Workshop</a> - fun examples to try
+      </li><li>Other Web-based Logos:
+        <ul>
+          <li><a target="_blank" href="https://turtlespaces.org/">turtleSpaces</a>
+          </li><li><a target="_blank" href="http://logo.twentygototen.org/_REo_2F2">papert - logo in your browser</a>
+          </li><li><a target="_blank" href="https://github.com/drj11/curlylogo" data-old-href="http://www.amberfrog.com/logo/">Curly Logo</a> (uses SVG).
+          </li><li><a target="_blank" href="https://blog.heroku.com/archives/2011/4/1/announcing_heroku_for_logo">Heroku for Logo</a> - based on Logo; launched April 1st, 2011
+          </li><li><a target="_blank" href="https://turtleacademy.com/">Turtle Academy</a> - The easy way to learn programming
+        </li></ul>
+      </li><li><a target="_blank" href="http://el.media.mit.edu/logo-foundation/">The Logo Foundation</a> with links to learning resources and software
+      </li><li><a target="_blank" href="https://www.cs.berkeley.edu/~bh/logo.html">Berkeley Logo (UCBLogo)</a> is a well respected freeware interpreter
+      </li><li><a target="_blank" href="http://blog.ianbicking.org/2007/10/19/logo/">Ian Bicking on Logo</a>
+      </li><li><a target="_blank" href="http://pylogo.sourceforge.net/">PyLogo</a> is a sweet interpreter in Python
+      </li><li><a target="_blank" href="http://guyhaas.com/bfoit/itp/">Introduction to Computer Programming</a> using Logo
+      </li></ul>
+      <p style="margin-top: 2em;">
+        By <a href="mailto:inexorabletash@gmail.com">Joshua Bell</a> and other
+        <a target="_blank" href="https://github.com/inexorabletash/jslogo/graphs/contributors">contributors</a>.
+      </p>
+      <p style="margin-top: 2em;">
+        Syntax Highlighting by <a target="_blank" href="https://codemirror.net/">CodeMirror</a>.
+      </p>
+  </div>
+  <div class="choice" id="extras">
+    <ul>
+      <li><a data-l10n-id="extras-download-library" id="savelibrary" href="https://www.calormen.com/jslogo/#">Download Library</a></li>
+      <li><a data-l10n-id="extras-download-drawing" id="screenshot" href="https://www.calormen.com/jslogo/#">Download Drawing</a></li>
+    </ul>
+  </div>
+</div>
+
+<script src="./Logo Interpreter-house_files/floodfill.js.download"></script>
+<script src="./Logo Interpreter-house_files/logo.js(1).download"></script>
+<script src="./Logo Interpreter-house_files/turtle.js.download"></script>
+<script src="./Logo Interpreter-house_files/dialog.js.download"></script>
+<script src="./Logo Interpreter-house_files/index.js.download"></script>
+<!-- TogetherJS Collaboration -->
+<script src="./Logo Interpreter-house_files/togetherjs-min.js.download"></script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-18610679-3', 'auto');
+  ga('send', 'pageview');
+</script>
+</body></html>

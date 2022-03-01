@@ -1,0 +1,28 @@
+cs
+
+to rectangle :width :height
+  REPEAT 2 [
+    RIGHT 90
+    FORWARD :width
+    RIGHT 90
+    FORWARD :height
+  ]
+end 
+rectangle 300 200
+
+to triangle :length
+  make 'side :length / sqrt(2)
+  right 90
+  forward :length
+  left 135
+  forward :side
+  left 90
+  forward :side
+end 
+triangle 300
+
+to rectangle
+
+
+
+

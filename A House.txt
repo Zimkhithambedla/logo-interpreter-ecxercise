@@ -1,0 +1,196 @@
+cs
+pendown
+right 90
+forward 400
+right 90
+forward 200
+right 90
+forward 400
+right 90
+forward 200
+right 45
+forward 200
+right 90
+forward 200
+right 45
+forward 200
+penup
+right 90
+forward 100
+right 90
+pendown
+forward 50
+left 90
+forward 25
+left 90
+forward 50
+right 90
+penup
+right 90
+forward 200
+right 90
+forward 150
+penup
+right 90
+forward 200
+right 90
+forward 165
+right 90
+pendown
+forward 50
+left 90
+forward 25
+left 90
+forward 50
+penup
+right 90
+forward 50
+right 90
+forward 95
+pendown
+forward 50
+left 90
+forward 50
+left 90
+forward 50
+left 90
+forward 50
+left 90
+penup
+forward 25
+left 90
+pendown
+forward 50
+right 90
+penup
+forward 25
+right 90
+forward 25
+right 90
+pendown
+forward 50
+left 90
+penup
+forward 170
+pendown
+forward 50
+left 90 
+forward 50
+left 90
+forward 50
+left 90
+forward 50
+left 90
+forward 25
+left 90
+forward 50
+right 90
+forward 25
+right 90
+forward 25
+right 90
+forward 50
+
+penup
+right 90
+forward 80
+right 90
+
+pendown
+forward 70
+left 30
+forward 40
+right 30
+forward 50
+right 30
+forward 40
+
+penup
+right 61
+forward 120
+right 90
+forward 15
+
+pendown
+forward 90
+left 90
+forward 80
+
+penup
+left 180
+forward 80
+right 90
+forward 90
+right 90
+
+pendown
+forward 80
+
+penup
+right 90
+forward 45
+right 90
+forward 25
+forward 200
+left 90
+forward 90
+
+pendown
+left 45
+forward 38
+right 90
+forward 38
+left 90
+forward 38
+right 90
+forward 38
+left 90
+forward 38
+right 90
+forward 38
+left 90
+forward 38
+right 90
+forward 41
+
+penup
+right 90
+forward 38
+right 90
+
+pendown
+forward 41
+left 90
+forward 38
+right 90
+forward 38
+left 90
+forward 38
+right 90
+forward 38
+left 90
+forward 38
+
+left 90
+forward 38
+left 90
+forward 38
+right 90
+forward 38
+left 90
+forward 38
+right 90
+forward 43
+
+right 90
+forward 38
+right 90
+forward 43
+left 90
+forward 38
+left 90
+forward 45
+
+penup
+left 45
+forward 500
